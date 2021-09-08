@@ -1,0 +1,8 @@
+C:\TradingBotProjects\1234\Models1\bin\Debug\netstandard2.0\Models.deps.json
+C:\TradingBotProjects\1234\Models1\bin\Debug\netstandard2.0\Models.dll
+C:\TradingBotProjects\1234\Models1\bin\Debug\netstandard2.0\Models.pdb
+C:\TradingBotProjects\1234\Models1\obj\Debug\netstandard2.0\Models.AssemblyInfoInputs.cache
+C:\TradingBotProjects\1234\Models1\obj\Debug\netstandard2.0\Models.AssemblyInfo.cs
+C:\TradingBotProjects\1234\Models1\obj\Debug\netstandard2.0\Models.dll
+C:\TradingBotProjects\1234\Models1\obj\Debug\netstandard2.0\Models.pdb
+C:\TradingBotProjects\1234\Models1\obj\Debug\netstandard2.0\Models.csprojAssemblyReference.cache
