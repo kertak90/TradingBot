@@ -10,9 +10,9 @@ namespace MovingAverage
 {
     public class SimpleMovingAverage : ITechnicalAnalysis
     {
-        private readonly SimpleMovingAverageSettings _simpleMovingAverageSetting;
+        private readonly MovingAverageSettings _simpleMovingAverageSetting;
 
-        public SimpleMovingAverage(SimpleMovingAverageSettings simpleMovingAverageSetting)
+        public SimpleMovingAverage(MovingAverageSettings simpleMovingAverageSetting)
         {
             _simpleMovingAverageSetting = simpleMovingAverageSetting ?? throw new ArgumentNullException(nameof(simpleMovingAverageSetting));
         }
