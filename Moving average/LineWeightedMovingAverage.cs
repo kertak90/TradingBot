@@ -42,6 +42,7 @@ namespace MovingAverage
         }
         private decimal CalculateWMA(int leftIndex, int takeCount, ref Candle[] candles)
         {
+            if (takeCount <= 1) return 0;
             decimal summ = 0;
             int countOfValues = leftIndex + takeCount;
             for(int i = leftIndex; i < countOfValues; i++)

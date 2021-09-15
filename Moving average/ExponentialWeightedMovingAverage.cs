@@ -42,10 +42,14 @@ namespace MovingAverage
         }
         private decimal CalculateEWMA(int leftIndex, int takeCount, ref Candle[] candles)
         {
+            if (takeCount <= 1) return 0;
             decimal summ = 0;
-
-
-            return summ;
+            int countOfValues = leftIndex + takeCount;
+            for (int i = leftIndex; i < countOfValues; i++)
+            {
+                summ += candles[i].o * (2 / (countOfValues - i) + 1);
+            }
+            return summ / countOfValues;
         }
     }
 }
