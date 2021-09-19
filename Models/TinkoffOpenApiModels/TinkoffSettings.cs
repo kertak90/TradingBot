@@ -7,6 +7,7 @@ namespace Models.TinkoffOpenApiModels
 {
     public class TinkoffSettings
     {
+        public static string Section = "TinkoffSettings";
         public string TinkoffBrokerTokenFilePath { get; set; }
         public string TinkoffOpenApiBaseAdress { get; set; }
     }

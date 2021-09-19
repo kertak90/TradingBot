@@ -14,10 +14,8 @@ using TradingBotProjects.Services.Abstractions;
 namespace TradingBotProjects.Services
 {
     public class TinkoffBrokerHttpConnector : IHttpConnector
-    {
-        private static string Section = "TinkoffSettings";
+    {        
         private IHttpClientFactory _httpClientFactory;
-        private IConfiguration _configuration;
         private string _token;
         private TinkoffSettings _tinkoffSettings;
 
@@ -25,20 +23,18 @@ namespace TradingBotProjects.Services
         private Context _context;
         
         private HttpClient _httpClient;
-        public TinkoffBrokerHttpConnector(IHttpClientFactory httpClientFactory, IConfiguration configuration)
+        public TinkoffBrokerHttpConnector(IHttpClientFactory httpClientFactory,TinkoffSettings tinkoffSettings)
         {
-            _httpClientFactory = httpClientFactory;
-            _configuration = configuration;
+            _httpClientFactory = httpClientFactory ?? throw new ArgumentNullException(nameof(httpClientFactory));
+            _tinkoffSettings = tinkoffSettings ?? throw new ArgumentNullException(nameof(tinkoffSettings));
             Initialize();
         }
         private void Initialize()
         {
-            _tinkoffSettings = _configuration.GetSection(Section).Get<TinkoffSettings>();
             _token = File.ReadAllText(_tinkoffSettings.TinkoffBrokerTokenFilePath);
             _connection = ConnectionFactory.GetConnection(_token);
             _context = _connection.Context;
             _httpClient = _httpClientFactory.CreateClient();
-            _httpClient.BaseAddress = new Uri(_tinkoffSettings.TinkoffOpenApiBaseAdress);
         }
         public async Task<IEnumerable<MarketInstrument>> GetTickers()
         {

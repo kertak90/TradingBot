@@ -5,8 +5,10 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Models.TinkoffOpenApiModels;
 using TradingBotProjects.Services;
 using TradingBotProjects.Services.Abstractions;
 
@@ -14,14 +16,15 @@ namespace TradingBotProjects
 {
     public class Startup
     {
-        public void ConfigureServices(IServiceCollection services)
+        public IConfiguration Configuration { get; }
+
+        public Startup(IConfiguration configuration)
         {
-            services.AddTransient<ITradingDataService, TradingDataService>();
-            services.AddScoped<IHttpConnector, TinkoffBrokerHttpConnector>();
-            services.AddHttpClient<TradingDataService>(p => 
-            {
-                p.BaseAddress = new Uri("https://google.com");
-            });
+            Configuration = configuration;
+        }
+        public void ConfigureServices(IServiceCollection services)
+        {            
+            services.ConfigureTradingDataService(Configuration);
 
             services.AddControllers();
             services.AddMvc(options => options.EnableEndpointRouting = false);
