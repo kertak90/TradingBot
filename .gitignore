@@ -1,0 +1,8 @@
+*/obj/
+*/bin/
+*/.vs/
+*/.idea/
+Models/bin/*
+Models/obj/*
+TradingBot/bin/*
+TradingBot/obj/*
