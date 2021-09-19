@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Models.Settings
+namespace Models.SettingsModels
 {
-    class TinkoffBrokerTokenFilePath
+    public class TinkoffBrokerTokenFilePath
     {
         public string Windows { get; set; }
         public string Linux { get; set; }

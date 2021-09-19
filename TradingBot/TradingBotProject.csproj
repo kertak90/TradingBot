@@ -20,11 +20,12 @@
     <PackageReference Include="Swashbuckle.AspNetCore.Swagger" Version="6.2.1" />
     <PackageReference Include="Swashbuckle.AspNetCore.SwaggerGen" Version="6.2.1" />
     <PackageReference Include="Swashbuckle.AspNetCore.SwaggerUI" Version="6.2.1" />
-    <PackageReference Include="Tinkoff.Trading.OpenApi" Version="1.7.4" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Models\Models.csproj" />
+    <ProjectReference Include="..\Moving average\MovingAverage.csproj" />
+    <ProjectReference Include="..\TradingCore\TradingCore.csproj" />
   </ItemGroup>
 
 </Project>

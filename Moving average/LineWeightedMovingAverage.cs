@@ -1,28 +1,20 @@
-﻿using Models.TinkoffOpenApiModels;
+﻿using Models.SettingsModels;
+using Models.TinkoffOpenApiModels;
 using MovingAverage.Abstractions;
-using MovingAverage.Models;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace MovingAverage
 {
-    class LineWeightedMovingAverage : ITechnicalAnalysis
+    public class LineWeightedMovingAverage : ITechnicalAnalysis
     {
-        private readonly MovingAverageSettings _movingAverageSetting;
-
-        public LineWeightedMovingAverage(MovingAverageSettings movingAverageSetting)
-        {
-            _movingAverageSetting = movingAverageSetting ?? throw new ArgumentNullException(nameof(movingAverageSetting));
-        }
-        public IEnumerable<ChartValue> Calculate(IEnumerable<Candle> candles)
+        public IEnumerable<ChartValue> Calculate(IEnumerable<Candle> candles, MovingAverageSettings setting)
         {
             var timeLineCandles = candles.ToArray();
             var chartValues = new List<ChartValue>();
             for (int i = 0; i < timeLineCandles.Length; i++)
             {
-                var averageValue = GetAverageValue(i, ref timeLineCandles);
+                var averageValue = GetAverageValue(i, ref timeLineCandles, setting);
                 var value = new ChartValue
                 {
                     Value = averageValue,
@@ -32,9 +24,9 @@ namespace MovingAverage
             }
             return chartValues;            
         }
-        private decimal GetAverageValue(int index, ref Candle[] candles)
+        private decimal GetAverageValue(int index, ref Candle[] candles, MovingAverageSettings setting)
         {
-            var leftIndex = index - _movingAverageSetting.SamplingWidth;
+            var leftIndex = index - setting.SamplingWidth;
             leftIndex = leftIndex < 0 ? 0 : leftIndex;
             var rightIndex = index;
             var takeCount = rightIndex - leftIndex;

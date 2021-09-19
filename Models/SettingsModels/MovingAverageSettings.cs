@@ -1,9 +1,9 @@
-﻿using Models.Calculate;
+﻿using Models.CalculateModels;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace MovingAverage.Models
+namespace Models.SettingsModels
 {
     public class MovingAverageSettings
     {

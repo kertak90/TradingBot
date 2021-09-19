@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Models.Calculate
+namespace Models.CalculateModels
 {
     public enum Centering
     {

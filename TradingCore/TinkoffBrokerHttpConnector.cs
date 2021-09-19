@@ -1,11 +1,11 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using Models.SettingsModels;
 using Models.TinkoffOpenApiModels;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Net.Http;
+using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 using Tinkoff.Trading.OpenApi.Models;
 using Tinkoff.Trading.OpenApi.Network;
@@ -13,15 +13,13 @@ using TradingBotProjects.Services.Abstractions;
 
 namespace TradingBotProjects.Services
 {
-    public class TinkoffBrokerHttpConnector : IHttpConnector
+    public class TinkoffBrokerHttpConnector : IHttpConnector, IDisposable
     {        
         private IHttpClientFactory _httpClientFactory;
         private string _token;
         private TinkoffSettings _tinkoffSettings;
-
         private Connection _connection;
-        private Context _context;
-        
+        private Context _context;        
         private HttpClient _httpClient;
         public TinkoffBrokerHttpConnector(IHttpClientFactory httpClientFactory,TinkoffSettings tinkoffSettings)
         {
@@ -30,18 +28,26 @@ namespace TradingBotProjects.Services
             Initialize();
         }
         private void Initialize()
-        {
-            _token = File.ReadAllText(_tinkoffSettings.TinkoffBrokerTokenFilePath);
+        {            
+            InitializeToken();
             _connection = ConnectionFactory.GetConnection(_token);
             _context = _connection.Context;
             _httpClient = _httpClientFactory.CreateClient();
+        }
+        private void InitializeToken()
+        {
+            _token = RuntimeInformation.IsOSPlatform(OSPlatform.Windows)
+                ? File.ReadAllText(_tinkoffSettings.TokenPath.Windows)
+                : File.ReadAllText(_tinkoffSettings.TokenPath.Linux);
+            if (string.IsNullOrWhiteSpace(_token))
+                throw new ArgumentNullException(nameof(_token));
         }
         public async Task<IEnumerable<MarketInstrument>> GetTickers()
         {
             var marketInstrumentList = await _context.MarketStocksAsync();
             return marketInstrumentList.Instruments;
         }
-        public async Task<IEnumerable<CandlePayload>> GetTikerTimeLineForEveryMinutes(string tikerFigiName, DateTime from, DateTime to, CandleInterval interval)
+        public async Task<IEnumerable<CandlePayload>> GetTikerTimeLineForEveryCandleInterval(string tikerFigiName, DateTime from, DateTime to, CandleInterval interval)
         {            
             var hourResults = await _context.MarketCandlesAsync(tikerFigiName, from, to, interval);
                 
@@ -66,6 +72,11 @@ namespace TradingBotProjects.Services
         {
             var tickerName = await _context.MarketSearchByFigiAsync(figiName);
             return tickerName.Name;
+        }
+
+        public void Dispose()
+        {
+            _httpClient.Dispose();
         }
     }
 }

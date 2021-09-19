@@ -1,10 +1,11 @@
-﻿using Models.TinkoffOpenApiModels;
+﻿using Models.SettingsModels;
+using Models.TinkoffOpenApiModels;
 using System.Collections.Generic;
 
 namespace MovingAverage.Abstractions
 {
-    interface ITechnicalAnalysis
+    public interface ITechnicalAnalysis
     {
-        IEnumerable<ChartValue> Calculate(IEnumerable<Candle> candles);
+        IEnumerable<ChartValue> Calculate(IEnumerable<Candle> candles, MovingAverageSettings setting);
     }
 }

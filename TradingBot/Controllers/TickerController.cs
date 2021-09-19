@@ -32,7 +32,7 @@ namespace TradingBotProjects.Controllers
         {
             Console.WriteLine();
             var interval = (CandleInterval)((int)customInterval);
-            await _tradingDataService.GetTikerTimeLine(tikerName, timeFrom, timeTo, interval);
+            await _tradingDataService.SaveTikerTimeLine(tikerName, timeFrom, timeTo, interval);
         }
     }
 }

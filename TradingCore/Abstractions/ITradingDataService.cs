@@ -10,6 +10,7 @@ namespace TradingBotProjects.Services.Abstractions
     public interface ITradingDataService
     {
         Task<IEnumerable<MarketInstrument>> GetAllTickers();
-        Task GetTikerTimeLine(string figiName, DateTime timeFrom, DateTime timeTo, CandleInterval interval);
+        Task SaveTikerTimeLine(string figiName, DateTime timeFrom, DateTime timeTo, CandleInterval interval);
+        Task<IEnumerable<CandlePayload>> GetTickerTimeLineForThreeMonth(string figiName, CandleInterval interval);
     }
 }
