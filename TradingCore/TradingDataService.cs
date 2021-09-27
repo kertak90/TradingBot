@@ -23,7 +23,7 @@ namespace TradingBotProjects.Services
         public async Task SaveTikerTimeLine(string figiName, DateTime timeFrom, DateTime timeTo, CandleInterval interval)
         {
             var tickerName = await _httpConnector.GetTickerName(figiName);
-            await foreach (var batch in GetTimeLineForEveryMinutes(figiName, timeFrom, timeTo, interval))
+            await foreach (var batch in GetTimeLineForEveryInterval(figiName, timeFrom, timeTo, interval))
             {
                 var collectionString = "";
                 foreach (var item in batch)
@@ -38,13 +38,13 @@ namespace TradingBotProjects.Services
             var candlePayLoadCollection = new List<CandlePayload>();
             var from = DateTime.Now.AddMonths(-3);
             var to = DateTime.Now;
-            await foreach(var batch in GetTimeLineForEveryMinutes(figiName, from, to, interval))
+            await foreach(var batch in GetTimeLineForEveryInterval(figiName, from, to, interval))
             {
                 candlePayLoadCollection.AddRange(batch);
             }
             return candlePayLoadCollection;
         }
-        private async IAsyncEnumerable<IEnumerable<CandlePayload>> GetTimeLineForEveryMinutes(string figiName, DateTime timeFrom, DateTime timeTo, CandleInterval interval)
+        private async IAsyncEnumerable<IEnumerable<CandlePayload>> GetTimeLineForEveryInterval(string figiName, DateTime timeFrom, DateTime timeTo, CandleInterval interval)
         {            
             var _from = timeFrom;
             var _to = timeFrom;
@@ -52,7 +52,7 @@ namespace TradingBotProjects.Services
             while (_from < timeTo)
             {
                 //todo refactor this
-                if (timeTo.Subtract(_from) > TimeSpan.Zero)
+                if (timeTo.Subtract(_from) < TimeSpan.FromDays(1))
                     break;
                 if (_to > timeTo) 
                     _to = timeTo;
