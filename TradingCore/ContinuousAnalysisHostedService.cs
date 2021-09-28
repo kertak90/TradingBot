@@ -13,6 +13,7 @@ using TradingBotProjects.Services.Abstractions;
 using TradingCore.Sundries;
 using TradingCore;
 using MovingAverage;
+using TelegramBot.Abstractions;
 
 namespace TradingBotProjects.Services
 {
@@ -24,13 +25,16 @@ namespace TradingBotProjects.Services
         private MovingAverageSettings _movingAverageFor13DaySetting;
         private MovingAverageSettings _movingAverageFor26DaySetting;
         private ITradingEventsHandler _tradingEventsHandler;
+        private readonly ITelegramBotConnector _telegramConnector;
 
         private HashSet<(string Ticker, string Figi)> _tickersList { get; } = new HashSet<(string Ticker, string Figi)>();
         public ContinuousAnalysisHostedService(ITradingDataService tradingDataService,
-            ITradingEventsHandler tradingEventsHandler)
+            ITradingEventsHandler tradingEventsHandler,
+            ITelegramBotConnector telegramConnector)
         {
             _tradingDataService = tradingDataService ?? throw new ArgumentNullException(nameof(tradingDataService));
             _tradingEventsHandler = tradingEventsHandler ?? throw new ArgumentNullException(nameof(tradingEventsHandler));
+            _telegramConnector = telegramConnector ?? throw new ArgumentNullException(nameof(telegramConnector));
         }
 
         public async Task StartAsync(CancellationToken cancellationToken)
@@ -68,7 +72,7 @@ namespace TradingBotProjects.Services
             {
                 foreach (var ticker in _tickersList)
                 {
-                    Console.WriteLine($"Ticker: {ticker.Ticker}");
+                    Console.WriteLine($"Ticker: {ticker.Ticker}");                    
                     await AnalyzeChartsOnIntersect(ticker);
                     await Task.Delay(TimeSpan.FromSeconds(1));
                 }
@@ -114,12 +118,16 @@ namespace TradingBotProjects.Services
             {
                 if (isUpwardIntersection)
                 {
+                    Console.WriteLine($"${ticker.Ticker} UpWardIntersectionEvent");
+                    await _telegramConnector.SendMessage($"${ticker.Ticker} UpWardIntersectionEvent");
                     _tradingEventsHandler.On(new UpWardIntersectionEvent
                     {
                         EventDayCandle = _candles.Last()
                     });
                     return;
                 }
+                Console.WriteLine($"${ticker.Ticker} DownWardIntersectionEvent");
+                await _telegramConnector.SendMessage($"${ticker.Ticker} DownWardIntersectionEvent");
                 _tradingEventsHandler.On(new DownWardIntersectionEvent
                 {
                     EventDayCandle = _candles.Last()

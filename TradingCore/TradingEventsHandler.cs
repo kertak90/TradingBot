@@ -9,7 +9,8 @@ namespace TradingCore
     {
         public void On(BaseEvent @event)
         {
-            Console.WriteLine($"event: {@event.EventType}");
+            if(@event.GetType() == typeof(UpWardIntersectionEvent))
+                Console.WriteLine($"event: {@event.GetType()}");
         }
     }
 }

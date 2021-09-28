@@ -3,7 +3,7 @@
     public class TinkoffSettings
     {
         public static string Section = "TinkoffSettings";
-        public TinkoffBrokerTokenFilePath TokenPath { get; set; }
+        public TokenFilePath TokenPath { get; set; }
         public string TinkoffOpenApiBaseAdress { get; set; }
     }
 }

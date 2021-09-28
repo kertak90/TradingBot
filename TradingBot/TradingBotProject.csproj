@@ -25,6 +25,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Models\Models.csproj" />
     <ProjectReference Include="..\Moving average\MovingAverage.csproj" />
+    <ProjectReference Include="..\TelegramBot\TelegramBot.csproj" />
     <ProjectReference Include="..\TradingCore\TradingCore.csproj" />
   </ItemGroup>
 

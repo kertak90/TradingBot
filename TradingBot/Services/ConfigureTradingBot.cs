@@ -8,7 +8,10 @@ using TradingBotProjects.Services.Abstractions;
 using MovingAverage.Abstractions;
 using MovingAverage;
 using Models.SettingsModels;
-using TradingCore; 
+using TradingCore;
+using TelegramBot.Models;
+using TelegramBot;
+using TelegramBot.Abstractions;
 
 namespace TradingBotProjects.Services
 {
@@ -22,6 +25,7 @@ namespace TradingBotProjects.Services
             services.ConfigureTinkoffBrokerConnector();
             services.ConfigureTechnicalAnalysis();
             services.ConfigureEventHandler();
+            services.ConfigureTelegramBot();
         }
         private static void AddHostedServices(this IServiceCollection services)
         {
@@ -45,6 +49,12 @@ namespace TradingBotProjects.Services
         private static void ConfigureEventHandler(this IServiceCollection services)
         {
             services.AddSingleton<ITradingEventsHandler, TradingEventsHandler>();
+        }
+        private static void ConfigureTelegramBot(this IServiceCollection services)
+        {
+            var telegramBotSettings = _configuration.GetSection(TelegramBotSettings.Section).Get<TelegramBotSettings>();
+            services.AddSingleton(telegramBotSettings);
+            services.AddSingleton<ITelegramBotConnector, TelegramBotConnector>();
         }
     }
 }
