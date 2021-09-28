@@ -1,3 +1,3 @@
 # TradingBot
 
-#### Telegram channel for post notifications: (channel)[`https://t.me/DayMovingAverageEvents`]
+#### Telegram channel for post notifications: (`https://t.me/DayMovingAverageEvents`)[channel]
