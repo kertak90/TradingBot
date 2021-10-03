@@ -1,8 +1,4 @@
 ﻿using Models;
-using System;
-using System.Collections.Generic;
-using MathNet.Numerics.LinearAlgebra;
-using System.Text;
 using Models.TinkoffOpenApiModels;
 
 namespace TradingCore.Sundries
@@ -24,7 +20,7 @@ namespace TradingCore.Sundries
 
             var t = (y02 - y01) / (k1 - k2);
 
-            isUpward = false;
+            isUpward = true;
 
             if (t < A.X || t > B.X)
             {                
@@ -32,7 +28,7 @@ namespace TradingCore.Sundries
             }
 
             if (B.Y > D.Y)
-                isUpward = true;
+                isUpward = !isUpward;
             return true;
         }
         private ChartValuePair GetValuePair(ChartValue chartValue)

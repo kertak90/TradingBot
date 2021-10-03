@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
 using Tinkoff.Trading.OpenApi.Models;
-using TradingBotProjects.Services.Abstractions;
+using TradingCore.Abstractions;
 using TradingCore.Sundries;
 
 namespace TradingBotProjects.Services

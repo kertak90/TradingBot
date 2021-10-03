@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Tinkoff.Trading.OpenApi.Models;
 
-namespace TradingBotProjects.Services.Abstractions
+namespace TradingCore.Abstractions
 {
     public interface IHttpConnector
     {

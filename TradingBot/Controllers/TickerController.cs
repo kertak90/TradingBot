@@ -5,11 +5,11 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
 using Tinkoff.Trading.OpenApi.Models;
-using TradingBotProjects.Services.Abstractions;
 using Models.TinkoffOpenApiModels;
+using TradingCore.Abstractions;
 
 namespace TradingBotProjects.Controllers
-{    
+{
     [Route("api/[controller]")]
     [ApiController]
     public class TickerController : Controller

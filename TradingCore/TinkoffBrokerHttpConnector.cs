@@ -9,7 +9,7 @@ using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 using Tinkoff.Trading.OpenApi.Models;
 using Tinkoff.Trading.OpenApi.Network;
-using TradingBotProjects.Services.Abstractions;
+using TradingCore.Abstractions;
 
 namespace TradingBotProjects.Services
 {

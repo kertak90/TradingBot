@@ -1,6 +1,6 @@
 ﻿using Models.Events;
 
-namespace TradingCore
+namespace TradingCore.Abstractions
 {
     public interface ITradingEventsHandler
     {

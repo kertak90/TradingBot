@@ -4,7 +4,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using TradingBotProjects.Services.Abstractions;
 using MovingAverage.Abstractions;
 using MovingAverage;
 using Models.SettingsModels;
@@ -12,6 +11,8 @@ using TradingCore;
 using TelegramBot.Models;
 using TelegramBot;
 using TelegramBot.Abstractions;
+using TradingCore.Abstractions;
+using TradingSchedulers.Schedulers;
 
 namespace TradingBotProjects.Services
 {
@@ -21,11 +22,12 @@ namespace TradingBotProjects.Services
         public static void ConfigureTradingDataService(this IServiceCollection services, IConfiguration configuration)
         {
             _configuration = configuration ?? throw new ArgumentNullException(nameof(configuration));
-            services.AddHostedServices();
+            //services.AddHostedServices();
             services.ConfigureTinkoffBrokerConnector();
             services.ConfigureTechnicalAnalysis();
             services.ConfigureEventHandler();
             services.ConfigureTelegramBot();
+            services.InitializeChartIntersectionScheduler();
         }
         private static void AddHostedServices(this IServiceCollection services)
         {
@@ -44,6 +46,7 @@ namespace TradingBotProjects.Services
         }
         private static void ConfigureTechnicalAnalysis(this IServiceCollection services)
         {
+            services.AddTransient<IChartIntersectionAnalyzeService, ChartIntersectionAnalyzeService>();
             services.AddTransient<ITechnicalAnalysis, LineWeightedMovingAverage>();
         }
         private static void ConfigureEventHandler(this IServiceCollection services)
