@@ -1,20 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "/root/TradingBotProject/TradingBot/Moving average/MovingAverage.csproj": {}
+    "/home/oleg/Projects/TradingBot/TradingBot/Moving average/MovingAverage.csproj": {}
   },
   "projects": {
-    "/root/TradingBotProject/TradingBot/Models/Models.csproj": {
+    "/home/oleg/Projects/TradingBot/TradingBot/Models/Models.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/root/TradingBotProject/TradingBot/Models/Models.csproj",
+        "projectUniqueName": "/home/oleg/Projects/TradingBot/TradingBot/Models/Models.csproj",
         "projectName": "Models",
-        "projectPath": "/root/TradingBotProject/TradingBot/Models/Models.csproj",
-        "packagesPath": "/root/.nuget/packages/",
-        "outputPath": "/root/TradingBotProject/TradingBot/Models/obj/",
+        "projectPath": "/home/oleg/Projects/TradingBot/TradingBot/Models/Models.csproj",
+        "packagesPath": "/home/oleg/.nuget/packages/",
+        "outputPath": "/home/oleg/Projects/TradingBot/TradingBot/Models/obj/",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "/usr/share/dotnet/sdk/NuGetFallbackFolder"
+        ],
         "configFilePaths": [
-          "/root/.nuget/NuGet/NuGet.Config"
+          "/home/oleg/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "netstandard2.0"
@@ -24,7 +27,6 @@
         },
         "frameworks": {
           "netstandard2.0": {
-            "targetAlias": "netstandard2.0",
             "projectReferences": {}
           }
         },
@@ -36,7 +38,6 @@
       },
       "frameworks": {
         "netstandard2.0": {
-          "targetAlias": "netstandard2.0",
           "dependencies": {
             "NETStandard.Library": {
               "suppressParent": "All",
@@ -55,21 +56,24 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
-          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/5.0.401/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/3.1.401/RuntimeIdentifierGraph.json"
         }
       }
     },
-    "/root/TradingBotProject/TradingBot/Moving average/MovingAverage.csproj": {
+    "/home/oleg/Projects/TradingBot/TradingBot/Moving average/MovingAverage.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/root/TradingBotProject/TradingBot/Moving average/MovingAverage.csproj",
+        "projectUniqueName": "/home/oleg/Projects/TradingBot/TradingBot/Moving average/MovingAverage.csproj",
         "projectName": "MovingAverage",
-        "projectPath": "/root/TradingBotProject/TradingBot/Moving average/MovingAverage.csproj",
-        "packagesPath": "/root/.nuget/packages/",
-        "outputPath": "/root/TradingBotProject/TradingBot/Moving average/obj/",
+        "projectPath": "/home/oleg/Projects/TradingBot/TradingBot/Moving average/MovingAverage.csproj",
+        "packagesPath": "/home/oleg/.nuget/packages/",
+        "outputPath": "/home/oleg/Projects/TradingBot/TradingBot/Moving average/obj/",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "/usr/share/dotnet/sdk/NuGetFallbackFolder"
+        ],
         "configFilePaths": [
-          "/root/.nuget/NuGet/NuGet.Config"
+          "/home/oleg/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "netstandard2.0"
@@ -79,10 +83,9 @@
         },
         "frameworks": {
           "netstandard2.0": {
-            "targetAlias": "netstandard2.0",
             "projectReferences": {
-              "/root/TradingBotProject/TradingBot/Models/Models.csproj": {
-                "projectPath": "/root/TradingBotProject/TradingBot/Models/Models.csproj"
+              "/home/oleg/Projects/TradingBot/TradingBot/Models/Models.csproj": {
+                "projectPath": "/home/oleg/Projects/TradingBot/TradingBot/Models/Models.csproj"
               }
             }
           }
@@ -95,7 +98,6 @@
       },
       "frameworks": {
         "netstandard2.0": {
-          "targetAlias": "netstandard2.0",
           "dependencies": {
             "NETStandard.Library": {
               "suppressParent": "All",
@@ -114,7 +116,7 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
-          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/5.0.401/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/3.1.401/RuntimeIdentifierGraph.json"
         }
       }
     }

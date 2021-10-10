@@ -1,8 +1,20 @@
-*/obj/
-*/bin/
+**/[Dd]ebug/*
+**/[Rr]elease/*
+**/[Oo]bj/*
+**/[Bb]in/*
+TradingBot/bin/
+TradingBot/obj/
+Models/bin/
+Models/obj/
+TradingCore/bin/
+TradingCore/obj/
+TelegramBot/bin/
+TelegramBot/obj/
+TradingSchedulers/bin/
+TradingSchedulers/obj/
+Moving average/bin/
+Moving average/obj/
 */.vs/
-*/.idea/
-Models/bin/*
-Models/obj/*
-TradingBot/bin/*
-TradingBot/obj/*
+*/idea/
+**/release/
+
